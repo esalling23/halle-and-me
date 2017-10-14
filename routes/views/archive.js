@@ -2,11 +2,11 @@
  * (Halle and Me)
  * Developed by Erica Salling, 2017
  * ==============
- * Index page view controller.
+ * Archive page view controller.
  *
  * Help: http://keystonejs.com/docs/getting-started/#routesviews-firstview
  *
- * @class Index
+ * @class Archive
  * @author 
  *
  * ==========
