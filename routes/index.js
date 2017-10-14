@@ -55,6 +55,8 @@ router.get('/', routes.views.index);
 router.get('/archive', routes.views.archive);
 
 router.get('/api/load/', keystone.middleware.api, routes.api.memories.get);
+router.get('/api/new/', keystone.middleware.api, routes.api.memories.new);
+router.get('/api/edit/', keystone.middleware.api, routes.api.memories.edit);
 
     
 module.exports = router;

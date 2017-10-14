@@ -36,19 +36,13 @@ exports = module.exports = function(req, res) {
 
             locals.index = resultIndex;
 
-            var queryHalle = Halle.model.find({}, {}, {
-                sort: {
-                    'createdAt': -1
-                }
-            });
+            Halle.model.find({}).exec(function(err, result){
 
-            queryHalle.exec(function(err, result) {
-                if (err) throw err;
+                var random = Math.floor(Math.random() * result.length);
 
-                locals.Halles = result;
-                
+                locals.halle = result[random];
+ 
                 next();
-
             });
 
         });

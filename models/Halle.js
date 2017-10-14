@@ -34,10 +34,18 @@ Halle.add({
 
 	name: { type: String, label: 'Name', required: true, initial: true },
 
-	memories: { type: Types.TextArray, label: 'Captions/Memories'},
+	captions: { type: Types.TextArray, label: 'Captions/Memories'},
 	image: { type: Types.CloudinaryImage, label: 'Image', folder: 'halle-and-me'}
 	
 
+});
+
+Halle.schema.pre('save', function(next){
+
+	console.log(this.image);
+
+	// this.name = this.image;
+	next();
 });
 
 

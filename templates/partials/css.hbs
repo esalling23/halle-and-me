@@ -24,8 +24,6 @@
 <link rel="apple-touch-icon-precomposed" href="/images/favicons/favicon_57.png">
 
 
-{{#ifeq environment "development"}}
-
 	{{!-- DEVELOPMENT --}}
 	
 	{{!-- Bootstrap core CSS --}}
@@ -34,16 +32,7 @@
 
 
 	{{!-- Core Site CSS --}}
-	{{!-- <link href="/styles/core.css" rel="stylesheet"> --}}
+	<link href="/styles/core.css" rel="stylesheet">
 
 	{{!-- Bower plugins --}}
 
-{{else}}
-
-	{{!-- PRODUCTION --}}
-	{{!-- Suite core styling --}}
-	<link href="https://res.cloudinary.com/engagement-lab-home/raw/upload/site/styles/core.css" rel="stylesheet">
-	{{!-- Module styling --}}
-	<link href="{{cdnAsset product='repo-name' env=environment type='css' }}" rel="stylesheet">
-
-{{/ifeq}}
