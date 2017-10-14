@@ -12,7 +12,7 @@ exports.get = function(req, res) {
 
     Halle.model.find({}).exec(function(err, result){
 
-        random = return Math.random() * result.length;
+        random = Math.random() * result.length;
 
         data.memory = result[random];
 
