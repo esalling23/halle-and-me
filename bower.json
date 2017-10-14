@@ -1,0 +1,21 @@
+{
+  "name": "halle-and-me",
+  "description": "A Memorial for Halle",
+  "main": "app.js",
+  "version": "0.0.1",
+  "authors": [
+    "Erica Salling <erica.salling@gmail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.4"
+  }
+}

@@ -1,0 +1,7 @@
+{
+	"name": "halle-and-me",
+	"database": "halle-and-me",
+	"admin_nav": { 
+									"index": ["Index"]
+								}
+}

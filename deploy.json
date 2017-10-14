@@ -1,0 +1,38 @@
+{
+  "apps" : [{
+    "name": "halle-and-me",
+    "script": "server.js",
+    "env_production": {
+      "NODE_ENV": "production"
+    },
+    "env_staging": {
+      "NODE_ENV": "staging"
+    }
+  }],
+  "deploy" : {
+
+    "framework-production" : {
+      "user": "node",
+      "host": "104.236.233.118",
+      "repo": "https://github.com/esalling23/el-web-sdk.git",
+      "ref": "origin/master",
+      "path": "/srv/framework",
+      "pre-deploy-local" : "echo 'Cloning and running npm install. Be patient.'",
+      "post-deploy" : "npm install ; grunt compile --sites=halle-and-me --env production ; pm2 restart 0 -- halle-and-me --env production",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+
+    "production" : {
+      "user": "node",
+      "host": "104.236.233.118",
+      "repo": "https://github.com/esalling23/halle-and-me.git",
+      "ref": "origin/master",
+      "path": "/srv/halle-and-me",
+      "pre-deploy-local" : "echo 'NPM linking halle-and-me and restarting app.';",
+      "post-deploy" : "npm i ; cd /srv/framework/current/ ; grunt compile --sites=halle-and-me --env production ; NODE_ENV=production pm2 restart server.js -- halle-and-me --env production"
+    }
+
+  }
+}
