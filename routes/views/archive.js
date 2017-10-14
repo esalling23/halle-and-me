@@ -12,7 +12,6 @@
  * ==========
  */
 var keystone = require('keystone'),
-    Index = keystone.list('Index'),
     Halle = keystone.list('Halle'),
     _ = require('underscore');
 
@@ -22,39 +21,28 @@ exports = module.exports = function(req, res) {
         locals = res.locals;
 
     // Init locals
-    locals.section = 'index';
+    locals.section = 'archive';
 
     view.on('init', function(next) {
 
-        var queryIndex = Index.model.findOne({}, {}, {
+        var queryHalle = Halle.model.find({}, {}, {
             sort: {
                 'createdAt': -1
             }
         });
-        queryIndex.exec(function(err, resultIndex) {
+
+        queryHalle.exec(function(err, result) {
             if (err) throw err;
 
-            locals.index = resultIndex;
-
-            var queryHalle = Halle.model.find({}, {}, {
-                sort: {
-                    'createdAt': -1
-                }
-            });
-
-            queryHalle.exec(function(err, result) {
-                if (err) throw err;
-
-                locals.Halles = result;
-                
-                next();
-
-            });
+            locals.Halles = result;
+            
+            next();
 
         });
+
     });
 
     // Render the view
-    view.render('index');
+    view.render('archive');
 
 };
