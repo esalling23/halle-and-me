@@ -15,49 +15,69 @@
 // Start
 $(document).ready(function() {
 
+  var themeColors = ['#B3ABD6', '#96CECE', '#7FB1C6'];
+  var themeFonts = ["'Just Me Again Down Here', cursive", "'Rouge Script', cursive", "'Parisienne', cursive", "'Niconne', cursive", "'Reenie Beanie', cursive"];
+
+  var theme = themeColors[Math.floor(Math.random() * themeColors.length)];
+  var font = themeFonts[Math.floor(Math.random() * themeFonts.length)]
+
+  $('body').css('font-family', theme);
+  $('#memory-container').css('background-color', theme);
+
   // Generate a new Halle memory
   $('#generate').click(function(e) {
+
+    // // Do some stuff with the display
+    $.get("/api/find/", function(data){
+      
+      $('#memory-container').html(data);
+
+    }).error(function(err) {
+        alert( "error" + err );
+    });
 
   });
 
 
   // Create a new Halle memory, starting with a picture
-  $('#add-memory').click(function(e) {
-    $('#upload_widget_opener').cloudinary_upload_widget(
-      { cloud_name: 'esalling', 
-        upload_preset: 'wtokgjnv', 
-        cropping: 'server', 
-        sources: [ 'local', 'url' ], 
-        multiple: false
-      }, function(error, result) { 
+  // $('#add-memory').click(function(e) {
+  //   $('#upload_widget_opener').cloudinary_upload_widget(
+  //     { cloud_name: 'esalling', 
+  //       upload_preset: 'wtokgjnv', 
+  //       cropping: 'server', 
+  //       sources: [ 'local', 'url' ], 
+  //       multiple: false
+  //     }, function(error, result) { 
 
-        if (!result[0])
-          return;
+  //       if (!result[0])
+  //         return;
           
-        console.log(result[0]);
+  //       console.log(result[0]);
 
-        // Do some stuff with the display
-        $.post("/api/new/", { image: result[0] }, function(data){
+  //       // Do some stuff with the display
+  //       $.post("/api/new/", { image: result[0] }, function(data){
           
-          // Notify success
-          $('.update-picture .save-msg').text('Nice! Saved.').fadeIn(function(){
-            setTimeout(function(){
-              $('.update-picture .save-msg').fadeOut();
-            }, 2000)
-          });
+  //         // Notify success
+  //         $('.update-picture .save-msg').text('Nice! Saved.').fadeIn(function(){
+  //           setTimeout(function(){
+  //             $('.update-picture .save-msg').fadeOut();
+  //           }, 2000)
+  //         });
 
-          // Do some stuff with the display
-          $('.profile-picture').attr('src', result[0].url);
-        }).error(function(err) {
-            alert( "error" + err );
-        });
-    });
-  });
+  //         // Do some stuff with the display
+  //         $('.profile-picture').attr('src', result[0].url);
+  //       }).error(function(err) {
+  //           alert( "error" + err );
+  //       });
+  //   });
+  // });
 
-  // Edit a Halle memory by adding captions, context, and more
-  $('#edit').click(function(e) {
 
-  });
+
+  // // Edit a Halle memory by adding captions, context, and more
+  // $('#edit-memory').click(function(e) {
+
+  // });
 
 
 }); 

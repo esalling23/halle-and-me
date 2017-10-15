@@ -14,9 +14,11 @@ exports.get = function(req, res) {
 
         random = Math.floor(Math.random() * result.length);
 
-        data.memory = result[random];
+        data.halle = result[random];
 
         Templates.Load('/partials/memory', data, function(html) {
+
+            console.log(html);
 
             res.send(html);
 
@@ -26,6 +28,10 @@ exports.get = function(req, res) {
 
     
 };
+
+exports.update = function(req, res) {
+
+}
 
 exports.edit = function(req, res) {
 

@@ -54,8 +54,8 @@ router.all('/admin', function(req, res, next) {
 router.get('/', routes.views.index);
 router.get('/archive', routes.views.archive);
 
-router.get('/api/load/', keystone.middleware.api, routes.api.memories.get);
-router.get('/api/new/', keystone.middleware.api, routes.api.memories.new);
+router.get('/api/find/', keystone.middleware.api, routes.api.memories.get);
+router.post('/api/new/', keystone.middleware.api, routes.api.memories.new);
 router.get('/api/edit/', keystone.middleware.api, routes.api.memories.edit);
 
     
