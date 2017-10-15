@@ -15,13 +15,13 @@
 // Start
 $(document).ready(function() {
 
-  var themeColors = ['#B3ABD6', '#96CECE', '#7FB1C6'];
+  var themeColors = ['#B3ABD6', '#96CECE', '#7FB1C6', '#7BAEE5', '#92E599', '#F7E1F4', '#89B58D', '#F2E9A7', '#F2CFA7', '#F2B9A7', '#C8E7F4'];
   var themeFonts = ["'Just Me Again Down Here', cursive", "'Rouge Script', cursive", "'Parisienne', cursive", "'Niconne', cursive", "'Reenie Beanie', cursive"];
 
   var theme = themeColors[Math.floor(Math.random() * themeColors.length)];
-  var font = themeFonts[Math.floor(Math.random() * themeFonts.length)]
+  // var font = themeFonts[Math.floor(Math.random() * themeFonts.length)];
 
-  $('body').css('font-family', theme);
+  // $('body').css('font-family', font);
   $('#memory-container').css('background-color', theme);
 
   // Generate a new Halle memory
@@ -31,6 +31,11 @@ $(document).ready(function() {
     $.get("/api/find/", function(data){
       
       $('#memory-container').html(data);
+      theme = themeColors[Math.floor(Math.random() * themeColors.length)];
+      // font = themeFonts[Math.floor(Math.random() * themeFonts.length)];
+
+      // $('body').css('font-family', font);
+      $('#memory-container').css('background-color', theme);
 
     }).error(function(err) {
         alert( "error" + err );
