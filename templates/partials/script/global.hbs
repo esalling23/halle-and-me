@@ -19,22 +19,19 @@ $(document).ready(function() {
   var themeFonts = ["'Just Me Again Down Here', cursive", "'Rouge Script', cursive", "'Parisienne', cursive", "'Niconne', cursive", "'Reenie Beanie', cursive"];
 
   var theme = themeColors[Math.floor(Math.random() * themeColors.length)];
-  // var font = themeFonts[Math.floor(Math.random() * themeFonts.length)];
-
-  // $('body').css('font-family', font);
   $('#memory-container').css('background-color', theme);
+
+  $('.cloudinary-button').text('Upload Memory');
 
   // Generate a new Halle memory
   $('#generate').click(function(e) {
 
-    // // Do some stuff with the display
+    // Do some stuff with the display
     $.get("/api/find/", function(data){
       
       $('#memory-container').html(data);
       theme = themeColors[Math.floor(Math.random() * themeColors.length)];
-      // font = themeFonts[Math.floor(Math.random() * themeFonts.length)];
-
-      // $('body').css('font-family', font);
+      
       $('#memory-container').css('background-color', theme);
 
     }).error(function(err) {
@@ -45,44 +42,46 @@ $(document).ready(function() {
 
 
   // Create a new Halle memory, starting with a picture
-  // $('#add-memory').click(function(e) {
-  //   $('#upload_widget_opener').cloudinary_upload_widget(
-  //     { cloud_name: 'esalling', 
-  //       upload_preset: 'wtokgjnv', 
-  //       cropping: 'server', 
-  //       sources: [ 'local', 'url' ], 
-  //       multiple: false
-  //     }, function(error, result) { 
+  $('#upload_widget_opener').on('click', function(){
 
-  //       if (!result[0])
-  //         return;
-          
-  //       console.log(result[0]);
+    cloudinary.openUploadWidget(
+    { cloud_name: 'esalling', 
+      upload_preset: 'lqdamjzb', 
+      multiple: true,
+      theme: 'purple',
+      button_text: 'Add Memory',
+      cropping: 'server', 
+      sources: [ 'local', 'url' ], 
+      folder: 'halle-and-me', 
+      thumbnails: false
+    }, function(error, result) { 
 
-  //       // Do some stuff with the display
-  //       $.post("/api/new/", { image: result[0] }, function(data){
-          
-  //         // Notify success
-  //         $('.update-picture .save-msg').text('Nice! Saved.').fadeIn(function(){
-  //           setTimeout(function(){
-  //             $('.update-picture .save-msg').fadeOut();
-  //           }, 2000)
-  //         });
+      if (!result || error) return;
 
-  //         // Do some stuff with the display
-  //         $('.profile-picture').attr('src', result[0].url);
-  //       }).error(function(err) {
-  //           alert( "error" + err );
-  //       });
-  //   });
-  // });
+      if (!result[0]) return;
+        
+      console.log(result[0]);
 
+      // Do some stuff with the display
+      $.post("/api/new/", { image: result[0] }, function(data){
 
+        console.log(data);
+        
+        // Notify success, Do some stuff with the display
+        $('#add-edit-modal').html(data.html).fadeIn(function() {
+          $('.picture').attr('src', result[0].url);
+
+        });
+      }).error(function(err) {
+          alert( "error" + err );
+      });
+    });
+  });
 
   // // Edit a Halle memory by adding captions, context, and more
-  // $('#edit-memory').click(function(e) {
+  $('#edit-memory').click(function(e) {
 
-  // });
+  });
 
 
 }); 

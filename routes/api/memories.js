@@ -39,7 +39,6 @@ exports.edit = function(req, res) {
         data = {};
 
 
-
     Halle.model.find({ _id: req.params.id }).exec(function(err, result){
 
         result.getUpdateHandler(req).process(req.body, function(err) {
@@ -58,16 +57,20 @@ exports.edit = function(req, res) {
 
 exports.new = function(req, res) {
 
-    Halle.model.findOne({ _id: req.params.id }).exec((err, result) => {
+    var Templates = new TemplateLoader();
 
-        result.getUpdateHandler(req).process(req.body, function(err) {
- 
-            if (err) return res.apiError('error', err);
+    var newHalle = new Halle.model({
+        name: req.body.image.signature, 
+        image: req.body.image
+    });
 
-            res.send('success');
+    newHalle.save(function(){
+
+        Templates.Load('partials/modal', req.body.image, (html) => {
+
+            res.send({ html: html });
 
         });
-
     });
 
 };
