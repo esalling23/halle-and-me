@@ -69,7 +69,35 @@ $(document).ready(function() {
         
         // Notify success, Do some stuff with the display
         $('#add-edit-modal').html(data.html).fadeIn(function() {
+
           $('.picture').attr('src', result[0].url);
+
+          $('#add_memory').on('click', function(e) {
+
+          });
+
+          $('#add-caption').on('click', function(e) {
+
+            $('#caption-popup').show(function(e) {
+              $(this).find('input').on('keydown', function(e) {
+                if(e.keyCode == 13) {
+                  // Send Caption to Memory
+                  $.post("/api/new/", { image: result[0] }, function(data){
+                    $('#caption-popup').hide();
+                  }).error(function(err) {
+                    
+                  });
+                }
+              });
+            });
+
+          });
+
+          $('#back-btn').on('click', function(e) {
+
+            $('.modal').hide();
+
+          });
 
         });
       }).error(function(err) {

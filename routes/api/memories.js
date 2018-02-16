@@ -16,6 +16,12 @@ exports.get = function(req, res) {
 
         data.halle = result[random];
 
+        if (data.halle.captions.length > 0) {
+            var caption = Math.floor(Math.random() * data.halle.captions.length);
+
+            data.caption = data.halle.captions[caption];
+        }
+
         Templates.Load('/partials/memory', data, function(html) {
 
             console.log(html);

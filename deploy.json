@@ -13,7 +13,7 @@
 
     "framework-production" : {
       "user": "node",
-      "host": "104.236.233.118",
+      "host": "159.203.170.192",
       "repo": "https://github.com/esalling23/el-web-sdk.git",
       "ref": "origin/master",
       "path": "/srv/framework",
@@ -26,7 +26,7 @@
 
     "production" : {
       "user": "node",
-      "host": "104.236.233.118",
+      "host": "159.203.170.192",
       "repo": "https://github.com/esalling23/halle-and-me.git",
       "ref": "origin/master",
       "path": "/srv/halleandme",

@@ -38,11 +38,18 @@ exports = module.exports = function(req, res) {
 
             Halle.model.find({}).exec(function(err, result){
 
-                var random = Math.floor(Math.random() * result.length);
+                var randomHalle = Math.floor(Math.random() * result.length);
 
-                locals.halle = result[random];
+                locals.halle = result[randomHalle];
+
+                if (locals.halle.captions.length > 0) {
+                    var caption = Math.floor(Math.random() * locals.halle.captions.length);
+
+                    locals.caption = locals.halle.captions[caption];
+                }
  
                 next();
+                
             });
 
         });

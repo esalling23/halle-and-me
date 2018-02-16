@@ -1,13 +1,24 @@
 <div class="modal-wrap add-edit">
 	<div class="modal-inner add-edit">
 
-	{{{jsonPrint this}}}
+		<img src="{{{cloudinaryUrl this height=200}}}" />
 
-		<img src="{{{cloudinaryUrl this width=200 height=200 quality=80}}}" />
+		{{!-- Captions --}}
+
+		<input id="add-caption" data-keep_enabled="true" class="submit edit" type="submit" name="caption" value="add caption">
+
+		<div class="popup modal" id="caption-popup">
+
+			<input id="caption-input" data-keep_enabled="true" class="" type="text" name="caption" value="caption here">
+
+		</div>
+
 
 		<div class="button-group">
 
-		<input id="back-btn" data-keep_enabled="true" class="submit" type="submit" name="submit" value="continue">
+			<input id="back-btn" data-keep_enabled="true" class="submit utility" type="submit" name="back" value="back">
+
+			<input id="add_memory" data-keep_enabled="true" class="submit utility" type="submit" name="add memory" value="add another memory">
 
 		</div>
 
